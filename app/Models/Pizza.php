@@ -20,6 +20,7 @@ class Pizza extends Model
 
     public function crustDiameter()
     {
+        
         return $this->belongsToMany(CrustDiameter::class, 'pizza_crust_diameters', 'pizza_id', 'crust_diameter_id');
     }
 
