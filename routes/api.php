@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Filter\IndexController as FilterIndexController;
 use App\Http\Controllers\Api\Pizza\IndexController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,5 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix'=>'pizza'],function(){
-    Route::get('/',IndexController::class);
+    Route::post('/',IndexController::class);
+    Route::get('/filters',FilterIndexController::class);
+
+  
 });

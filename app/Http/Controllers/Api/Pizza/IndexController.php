@@ -3,16 +3,20 @@
 namespace App\Http\Controllers\Api\Pizza;
 
 use App\Http\Controllers\Controller;
+use App\Http\Filters\PizzaFilter;
+use App\Http\Requests\API\FilterRequest;
 use App\Models\Pizza;
-use Illuminate\Http\Request;
 
-use function Termwind\render;
+
 
 class IndexController extends Controller
 {
-    public function __invoke()
+    public function __invoke(FilterRequest $request)
     {
-        $pizzas = Pizza::with(['crustDiameter','crustType'])->get();
+        $data = $request->validated();
+        $filter = app()->make(PizzaFilter::class, ['queryParams' => array_filter($data)]);
+        $pizzas = Pizza::filter($filter)->with(['crustDiameter','crustType'])->get();
+        // $pizzas = Pizza::with(['crustDiameter','crustType'])->get();
         return response()->json($pizzas);
     }
 }
