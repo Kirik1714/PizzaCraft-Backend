@@ -24,6 +24,7 @@ class FilterRequest extends FormRequest
         return [
             'categories' => 'nullable|array',
             'sorted' => 'nullable|string',
+            'page' => 'required|integer',
 
         ];
     }
