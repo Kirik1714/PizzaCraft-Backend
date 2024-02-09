@@ -26,7 +26,7 @@ Route::group(['prefix' => 'pizza'], function () {
 });
 
 Route::group([
-
+    'middleware' => 'api',
     'prefix' => 'auth'
 
 ], function ($router) {
@@ -36,7 +36,6 @@ Route::group([
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::post('/me', [AuthController::class, 'me']);
 });
-
 Route::group([  'prefix' => 'users'], function () {
     Route::post('/',StoreController::class);
     

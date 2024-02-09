@@ -14,7 +14,7 @@ class ShowController extends Controller
         $pizza = Pizza::with(['crustDiameter','crustType'])->findOrFail($id);
         if(!$pizza) {
             return response()->json(['message' => 'Pizza not found'], 404);
-        }
+        }   
 
         return response()->json($pizza);
     }
