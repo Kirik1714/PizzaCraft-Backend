@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\Api\Filter\IndexController as FilterIndexController;
+
 use App\Http\Controllers\Api\Pizza\IndexController;
 use App\Http\Controllers\Api\Pizza\ShowController;
+use App\Http\Controllers\Api\User\OrderController;
 use App\Http\Controllers\Api\User\StoreController;
 use App\Http\Controllers\AuthController;
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,10 +20,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/orders',OrderController::class);
 Route::group(['prefix' => 'pizza'], function () {
     Route::post('/', IndexController::class);
     Route::get('/{pizza}', ShowController::class);
-    Route::get('/filters', FilterIndexController::class);
+    
+    
+    
 });
 
 Route::group([
@@ -36,7 +40,7 @@ Route::group([
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::post('/me', [AuthController::class, 'me']);
 });
-Route::group([  'prefix' => 'users'], function () {
-    Route::post('/',StoreController::class);
-    
+Route::group(['prefix' => 'users'], function () {
+    Route::post('/', StoreController::class);
 });
+
