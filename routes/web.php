@@ -24,3 +24,7 @@ Route::group(['prefix' => 'pizza'], function () {
     Route::patch('/{pizza}', App\Http\Controllers\Pizza\UpdateController::class)->name('pizza.update');
     Route::delete('/{pizza}', App\Http\Controllers\Pizza\DeleteController::class)->name('pizza.destroy');
 });
+
+Route::group(['prefix' => 'orders'], function () {
+    Route::get('/', App\Http\Controllers\Order\IndexController::class)->name('orders.index');
+});
