@@ -24,6 +24,7 @@ class OrderRequest extends FormRequest
         return [
             'user_id'=>'required',
             'pizzaz'=>'required|json',
+            'total_price'=>'required|decimal:1',
         ];
     }
 }

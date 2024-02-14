@@ -20,11 +20,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/orders',OrderController::class);
 Route::group(['prefix' => 'pizza'], function () {
     Route::post('/', IndexController::class);
     Route::get('/{pizza}', ShowController::class);
     
+
+    Route::group(['prefix' => 'orders'], function () {
+        
+        Route::post('/',OrderController::class);
+        Route::get('/{id}',[OrderController::class,'getOrderByUser']);
+    });
+
     
     
 });
